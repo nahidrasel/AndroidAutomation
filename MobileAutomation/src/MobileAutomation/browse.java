@@ -13,29 +13,14 @@ public class browse extends baseChrome {
 	public static void main(String[] args) throws MalformedURLException {
 
 		AndroidDriver driver = capabilities();
-		/*
-		 * driver.get("http://facebook.com");
-		 * driver.findElementByXPath("//*[@id='u_0_1']/div[1]/div/input").sendKeys(
-		 * "qwerty"); driver.findElementByName("pass").sendKeys("12345");
-		 * driver.findElementByXPath("//button[@value='Log In']").click();
-		 */
-		// rahulonlinetutor@gmail.com
 
-		driver.get("http://cricbuzz.com");
-		driver.findElement(By.xpath("//a[@href='#menu']")).click();
-		driver.findElement(By.cssSelector("a[title='Cricbuzz Home']")).click();
-		System.out.println(driver.getCurrentUrl());
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0,480)", "");
-		Assert.assertTrue(
-				driver.findElement(By.xpath("//h4[text()='Top Stories']")).getAttribute("class").contains("header"));
-		System.out.println("Passed");
-
-//adb devices- Unauthorized
-//adb kill-server
-//adb start-server
-//adb devices
-
+		driver.get("https://rahulshettyacademy.com/angularAppdemo/");
+		driver.findElement(By.cssSelector(".navbar-toggler")).click();
+		driver.findElement(By.cssSelector("a[href*='products']")).click();
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(0,1000)", "");
+		
+		String text = driver.findElement(By.xpath("(//li[@class='list-group-item'])[3]/div/div/a")).getText();
+		Assert.assertEquals(text,"Devops");
 	}
-
 }

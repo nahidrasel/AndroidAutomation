@@ -1,18 +1,16 @@
 package MobileAutomation;
 
+import org.testng.AssertJUnit;
 import java.net.MalformedURLException;
-import java.util.Set;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.touch.TouchActions;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
 
-public class ecommerce_tc_4 extends base {
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.touch.TouchActions;
+
+public class ecommerce_tc_5 extends base {
 	public static void main(String[] args) throws MalformedURLException, InterruptedException {
 
 		AndroidDriver driver = capabilities();
@@ -41,31 +39,60 @@ public class ecommerce_tc_4 extends base {
 		driver.findElement(By.id("com.androidsample.generalstore:id/appbar_btn_cart")).click();
 		Thread.sleep(4000);
 
+		int count = driver.findElements(By.id("com.androidsample.generalstore:id/productPrice")).size();
 
+		double sum = 0;
+
+		for (int i = 0; i < count; i++)
+
+		{
+
+			String amount1 = driver.findElements(By.id("com.androidsample.generalstore:id/productPrice")).get(i)
+					.getText();
+
+			double amount = getAmount(amount1);
+
+			sum = sum + amount;// 280.97+116.97
+
+		}
+
+		System.out.println(sum + " sum of products");
+
+		String total = driver.findElement(By.id("com.androidsample.generalstore:id/totalAmountLbl")).getText();
+
+		total = total.substring(1);
+
+		double totalValue = Double.parseDouble(total);
+
+		System.out.println(totalValue + " Total value of products");
+
+		AssertJUnit.assertEquals(sum, totalValue);
 
 		// Mobile Gestures
 
 		driver.findElement(By.className("android.widget.CheckBox")).click();
 
+		WebElement tc = driver.findElement(By.xpath("//*[@text='Please read our terms of conditions']"));
+
 		TouchActions t = new TouchActions(driver);
+		t.clickAndHold(tc).perform();
+		driver.findElement(By.id("android:id/button1")).click();
+
 		driver.findElement(By.id("com.androidsample.generalstore:id/btnProceed")).click();
-		Thread.sleep(7000);
-		Set<String > contexts = driver.getContextHandles();
-		
-		for(String contextName : contexts)
-			{
-			System.out.println(contextName);
-			}
-		driver.context("WEBVIEW_com.androidsample.generalstore");
-		driver.findElement(By.name("q")).sendKeys("hello");
-		driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
-		
-		Thread.sleep(7000);
-		
-		driver.pressKey(new KeyEvent(AndroidKey.BACK));
-		driver.context("NATIVE_APP");
-}
+	}
 	
 	
+
+	public static double getAmount(String value)
+
+	{
+
+		value = value.substring(1);
+
+		double amount2value = Double.parseDouble(value);
+
+		return amount2value;
+
+	}
 
 }

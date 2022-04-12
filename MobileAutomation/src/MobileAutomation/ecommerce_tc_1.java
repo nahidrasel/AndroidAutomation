@@ -2,15 +2,10 @@ package MobileAutomation;
 
 import java.net.MalformedURLException;
 
-import javax.lang.model.element.Element;
-
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.touch.TouchActions;
 
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 
 public class ecommerce_tc_1 extends Hybridbase {

@@ -1,9 +1,7 @@
 package MobileAutomation;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -14,14 +12,13 @@ public class baseChrome {
 	public static AndroidDriver capabilities() throws MalformedURLException {
 		AndroidDriver driver;
 
-// TODO Auto-generated method stub
 		/*
 		 * File appDir = new File("src"); File app = new File(appDir,
 		 * "ApiDemos-debug.apk");
 		 */
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 
-		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Device");
+		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Nahid2");
 
 		capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "Chrome");
 
