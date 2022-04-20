@@ -15,6 +15,7 @@ public class ecommerce_tc_4 extends base {
 	@Test
 	public void totalValidation() throws InterruptedException, IOException {
 
+		startServer();
 		AndroidDriver driver = capabilities("GeneralStoreApp");
 
 		driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Hello");
